@@ -1,24 +1,25 @@
 ﻿using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Repositories.EfCore;
+using Services.Contracts;
 
-namespace WebApi.Controllers
+namespace Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/books")]
     public class BooksController : ControllerBase
     {
-        private readonly RepositoryContext _context;
-        public BooksController(RepositoryContext context)
+        private readonly IServiceManager _manager;
+
+        public BooksController(IServiceManager manager)
         {
-            _context = context;
+            _manager = manager;
         }
 
         [HttpGet]
         public IActionResult GetBooks()
         {
-            var books = _context.Books.ToList();
+            var books = _manager.BookService.GetAllBooks(trackChanges: false);
             return Ok(books);
         }
 
@@ -27,7 +28,10 @@ namespace WebApi.Controllers
         {
             try
             {
-                var book = _context.Books.Find(id);
+                var book = _manager
+                    .BookService
+                    .GetBookById(id: id, trackChanges: false);
+
                 if (book == null)
                     return NotFound();
                 return Ok(book);
@@ -47,8 +51,9 @@ namespace WebApi.Controllers
             {
                 if (book == null)
                     return BadRequest();
-                _context.Books.Add(book);
-                _context.SaveChanges();
+                _manager.BookService.CreateBook(book);
+
+
                 return StatusCode(201, book);
             }
             catch (Exception ex)
@@ -64,21 +69,11 @@ namespace WebApi.Controllers
         {
             try
             {
-                if (book == null)
+                if (book is null)
                     return BadRequest();
 
-                var bookToUpdate = _context
-                    .Books
-                    .Where(b => b.Id.Equals(id))
-                    .SingleOrDefault();
-                if (bookToUpdate == null)
-                    return NotFound();
-
-                bookToUpdate.Title = book.Title;
-                bookToUpdate.Price = book.Price;
-
-                _context.SaveChanges();
-                return Ok(bookToUpdate);
+                _manager.BookService.UpdateBook(id: id, book: book, trackChanges: true);
+                return NoContent();
             }
             catch (Exception ex)
             {
@@ -93,15 +88,8 @@ namespace WebApi.Controllers
         {
             try
             {
-                var bookToDelete = _context
-                    .Books
-                    .Where(b => b.Id.Equals(id))
-                    .SingleOrDefault();
-                if (bookToDelete == null)
-                    return NotFound();
+                _manager.BookService.DeleteBook(id: id, trackChanges: false);
 
-                _context.Books.Remove(bookToDelete);
-                _context.SaveChanges();
                 return NoContent();
             }
             catch (Exception ex)
@@ -117,19 +105,14 @@ namespace WebApi.Controllers
         {
             try
             {
-                if (bookPatch == null)
-                    return BadRequest();
-
-                var bookToUpdate = _context
-                    .Books
-                    .Where(b => b.Id.Equals(id))
-                    .SingleOrDefault();
-                if (bookToUpdate == null)
+                var entity = _manager.BookService.GetBookById(id: id, trackChanges: true);
+                if (entity == null)
                     return NotFound();
 
-                bookPatch.ApplyTo(bookToUpdate);
-                _context.SaveChanges();
-                return Ok(bookToUpdate);
+                bookPatch.ApplyTo(entity);
+                _manager.BookService.UpdateBook(id: id, book: entity, trackChanges: true);
+
+                return NoContent();
             }
             catch (Exception ex)
             {
@@ -138,6 +121,5 @@ namespace WebApi.Controllers
             }
 
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using Repositories.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Repositories.Contracts;
 using System.Linq.Expressions;
 
 namespace Repositories.EfCore
@@ -15,19 +16,16 @@ namespace Repositories.EfCore
 
         public void Delete(T entity) => _repositoryContext.Set<T>().Remove(entity);
 
-        public IQueryable<T> FindAll(bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
+        public void Update(T entity) => _repositoryContext.Set<T>().Update(entity);
 
-        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable<T> FindAll(bool trackChanges) =>
+            !trackChanges ?
+            _repositoryContext.Set<T>().AsNoTracking() :
+            _repositoryContext.Set<T>();
 
-        public void Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) =>
+            !trackChanges ?
+            _repositoryContext.Set<T>().Where(expression).AsNoTracking() :
+            _repositoryContext.Set<T>().Where(expression);
     }
 }
