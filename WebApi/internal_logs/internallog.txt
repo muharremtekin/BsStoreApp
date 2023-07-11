@@ -1,0 +1,23 @@
+2023-07-11 13:41:00.7459 Info Message Template Auto Format enabled
+2023-07-11 13:41:00.7733 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-11 13:41:00.7813 Info Closing old configuration.
+2023-07-11 13:41:00.7813 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-11 13:41:23.7182 Info Configuration file change detected! Reloading in 1000ms...
+2023-07-11 13:41:24.7229 Info Reloading configuration...
+2023-07-11 13:41:24.7229 Error Exception when loading configuration C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config Exception: System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+2023-07-11 13:41:24.7229 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Exception when loading configuration C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+ ---> System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+   --- End of inner exception stack trace ---
+2023-07-11 13:41:24.7229 Warn NLog Config Reload() failed. Invalid XML?

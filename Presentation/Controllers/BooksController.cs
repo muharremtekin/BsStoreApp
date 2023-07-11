@@ -33,7 +33,9 @@ namespace Presentation.Controllers
                     .GetBookById(id: id, trackChanges: false);
 
                 if (book == null)
+                {
                     return NotFound();
+                }
                 return Ok(book);
             }
             catch (Exception ex)
@@ -49,7 +51,7 @@ namespace Presentation.Controllers
         {
             try
             {
-                if (book == null)
+                if (book is null)
                     return BadRequest();
                 _manager.BookService.CreateBook(book);
 
