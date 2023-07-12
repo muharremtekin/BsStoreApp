@@ -21,3 +21,64 @@
    at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
    --- End of inner exception stack trace ---
 2023-07-11 13:41:24.7229 Warn NLog Config Reload() failed. Invalid XML?
+2023-07-11 20:56:35.9914 Info Message Template Auto Format enabled
+2023-07-11 20:56:36.0153 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-11 20:56:36.0153 Info Closing old configuration.
+2023-07-11 20:56:36.0295 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-11 20:57:54.5268 Info Message Template Auto Format enabled
+2023-07-11 20:57:54.6151 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-11 20:57:54.6401 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-11 21:18:40.2940 Info Message Template Auto Format enabled
+2023-07-11 21:18:40.4071 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-11 21:18:40.4501 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-11 21:19:00.0756 Info Message Template Auto Format enabled
+2023-07-11 21:19:00.1244 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-11 21:19:00.1415 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 13:46:38.8803 Info Message Template Auto Format enabled
+2023-07-12 13:46:38.9358 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 13:46:38.9541 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 13:52:56.7076 Info Message Template Auto Format enabled
+2023-07-12 13:52:56.7633 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 13:52:56.7823 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 13:54:00.5028 Info Message Template Auto Format enabled
+2023-07-12 13:54:00.5507 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 13:54:00.5680 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 13:54:41.1134 Info Message Template Auto Format enabled
+2023-07-12 13:54:41.1615 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 13:54:41.1800 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:14:23.8111 Info Message Template Auto Format enabled
+2023-07-12 14:14:23.8661 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 14:14:23.8868 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:15:34.7759 Info AppDomain Shutting down. LogFactory closing...
+2023-07-12 14:15:34.7865 Info LogFactory has been closed.
+2023-07-12 14:25:13.0010 Info Message Template Auto Format enabled
+2023-07-12 14:25:13.0474 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 14:25:13.0645 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:27:04.2512 Info AppDomain Shutting down. LogFactory closing...
+2023-07-12 14:27:04.2641 Info LogFactory has been closed.
+2023-07-12 14:27:15.9511 Info Message Template Auto Format enabled
+2023-07-12 14:27:16.0280 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 14:27:16.0513 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:31:12.6210 Info Message Template Auto Format enabled
+2023-07-12 14:31:12.6680 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 14:31:12.6864 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:31:15.4992 Info AppDomain Shutting down. LogFactory closing...
+2023-07-12 14:31:15.4992 Info LogFactory has been closed.
+2023-07-12 14:31:19.7376 Info Message Template Auto Format enabled
+2023-07-12 14:31:19.7856 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 14:31:19.8034 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:34:55.4378 Info Message Template Auto Format enabled
+2023-07-12 14:34:55.4843 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 14:34:55.5016 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:35:24.5465 Info AppDomain Shutting down. LogFactory closing...
+2023-07-12 14:35:24.5465 Info LogFactory has been closed.
+2023-07-12 14:35:41.9958 Info Message Template Auto Format enabled
+2023-07-12 14:35:42.0458 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 14:35:42.0635 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 14:44:05.7774 Info AppDomain Shutting down. LogFactory closing...
+2023-07-12 14:44:05.7866 Info LogFactory has been closed.
+2023-07-12 15:10:51.8618 Info Message Template Auto Format enabled
+2023-07-12 15:10:51.9109 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-07-12 15:10:51.9287 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-07-12 15:34:57.5782 Info AppDomain Shutting down. LogFactory closing...
+2023-07-12 15:34:57.5782 Info LogFactory has been closed.
