@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Repositories.EfCore;
+using Repositories.EfCore.Concrete;
 
 namespace WebApi.ContextFactory
 {

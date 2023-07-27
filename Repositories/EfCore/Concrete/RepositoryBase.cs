@@ -2,7 +2,7 @@
 using Repositories.Contracts;
 using System.Linq.Expressions;
 
-namespace Repositories.EfCore
+namespace Repositories.EfCore.Concrete
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {

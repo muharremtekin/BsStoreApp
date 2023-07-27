@@ -2,6 +2,13 @@
 {
     public interface IServiceManager
     {
-        IBookService BookService { get; }
+        IProductService ProductService { get; }
+        IFaultService FaultService { get; }
+        IImageService ImageService { get; }
+        IExcelService ExcelService { get; }
+        IPdfService PdfService { get; }
+        IMailService MailService { get; }
+
+
     }
 }
