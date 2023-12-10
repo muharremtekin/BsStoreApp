@@ -7,14 +7,12 @@ namespace Presentation.Controllers
     [ServiceFilter(typeof(ActionFilters.LogFilterAttribute))]
     [ApiController]
     [Route("api/images")]
-    public class ImageController : ControllerBase
+    [ApiExplorerSettings(GroupName = "v1")]
+    public class ImagesController : ControllerBase
     {
         private readonly IServiceManager _manager;
 
-        public ImageController(IServiceManager manager)
-        {
-            _manager = manager;
-        }
+        public ImagesController(IServiceManager manager) => _manager = manager;
 
         [HttpGet("{entityId:int}")]
         public async Task<IActionResult> GetAllImagesByEntityIdAsync([FromRoute(Name = "entityId")] int entityId)

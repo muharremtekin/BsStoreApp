@@ -1,6 +1,6 @@
 ﻿namespace Entities.Exceptions
 {
-    public abstract partial class BadRequesException : Exception
+    public abstract class BadRequesException : Exception
     {
         protected BadRequesException(string? message) : base(message)
         {

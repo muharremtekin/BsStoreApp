@@ -72,40 +72,41 @@ namespace Services.Concrete
             {
                 throw new ArgumentNullException("pdfBytes or excelBytes");
             }
-            var message = new MimeMessage();
-
-            message.From.Add(new MailboxAddress("System", _smtpUsername));
-            message.To.Add(new MailboxAddress("Yetkili", address: toEmail));
-            message.Subject = subject;
-
-            var bodyBuilder = new BodyBuilder
+            using (var message = new MimeMessage())
             {
-                TextBody = body
-            };
+                message.From.Add(new MailboxAddress("System", _smtpUsername));
+                message.To.Add(new MailboxAddress("Yetkili", address: toEmail));
+                message.Subject = subject;
 
-            if (isHtml)
-            {
-                bodyBuilder.HtmlBody = body;
-            }
+                var bodyBuilder = new BodyBuilder
+                {
+                    TextBody = body
+                };
 
-            bodyBuilder.Attachments.Add("Report.pdf", pdfBytes, ContentType.Parse("application/pdf"));
-            bodyBuilder.Attachments.Add("Report.xlsx", excelBytes, ContentType.Parse("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+                if (isHtml)
+                {
+                    bodyBuilder.HtmlBody = body;
+                }
+
+                bodyBuilder.Attachments.Add("Report.pdf", pdfBytes, ContentType.Parse("application/pdf"));
+                bodyBuilder.Attachments.Add("Report.xlsx", excelBytes, ContentType.Parse("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
 
 
 
-            message.Body = bodyBuilder.ToMessageBody();
+                message.Body = bodyBuilder.ToMessageBody();
 
-            using (var client = new SmtpClient())
-            {
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                using (var client = new SmtpClient())
+                {
+                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect(_smtpServer, _smtpPort, SecureSocketOptions.Auto);
+                    client.Connect(_smtpServer, _smtpPort, SecureSocketOptions.Auto);
 
-                client.Authenticate(_smtpUsername, _smtpPassword);
+                    client.Authenticate(_smtpUsername, _smtpPassword);
 
-                client.Send(message);
+                    client.Send(message);
 
-                client.Disconnect(true);
+                    client.Disconnect(true);
+                }
             }
         }
     }

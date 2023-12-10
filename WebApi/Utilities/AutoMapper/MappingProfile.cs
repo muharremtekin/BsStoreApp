@@ -2,6 +2,7 @@
 using Entities.DataTransferObjects.Fault;
 using Entities.DataTransferObjects.Image;
 using Entities.DataTransferObjects.Product;
+using Entities.DataTransferObjects.User;
 using Entities.Models;
 
 namespace WebApi.Utilities.AutoMapper
@@ -21,6 +22,8 @@ namespace WebApi.Utilities.AutoMapper
             CreateMap<ImageDtoForUpdate, Image>().ReverseMap();
             CreateMap<Image, ImageDto>();
             CreateMap<ImageDtoForInsertion, Image>();
+
+            CreateMap<UserForRegistrationDto, User>();
         }
     }
 }

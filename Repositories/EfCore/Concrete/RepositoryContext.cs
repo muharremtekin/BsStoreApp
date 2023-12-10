@@ -1,23 +1,21 @@
 ﻿using Entities.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Repositories.EfCore.Config;
+using System.Reflection;
 
 namespace Repositories.EfCore.Concrete
 {
-    public class RepositoryContext : DbContext
+    public class RepositoryContext : IdentityDbContext<User>
     {
-        public RepositoryContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
-        {
-
-        }
+        public RepositoryContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Fault> Faults { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ProductConfig());
-            modelBuilder.ApplyConfiguration(new FaultConfig());
-            modelBuilder.ApplyConfiguration(new ImageConfig());
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

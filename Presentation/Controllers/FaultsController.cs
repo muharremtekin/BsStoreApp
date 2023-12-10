@@ -9,15 +9,13 @@ using System.Text.Json;
 namespace Presentation.Controllers
 {
     [ServiceFilter(typeof(LogFilterAttribute))]
-    [Route("api/[controller]")]
+    [Route("api/faults")]
     [ApiController]
-    public class FaultController : ControllerBase
+    [ApiExplorerSettings(GroupName = "v1")]
+    public class FaultsController : ControllerBase
     {
         IServiceManager _manager;
-        public FaultController(IServiceManager manager)
-        {
-            _manager = manager;
-        }
+        public FaultsController(IServiceManager manager) => _manager = manager;
 
         [HttpGet]
         public async Task<IActionResult> GetAllFaults([FromQuery] FaultParameters faultParameters)

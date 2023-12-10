@@ -7,6 +7,7 @@ namespace Repositories.Contracts
     {
         Task<PagedList<Product>> GetAllProductsAsync(ProductParameters productParameters, bool trackChanges);
         Task<Product> GetProductByIdAsync(int id, bool trackChanges);
+        Task<IEnumerable<Product>> GetAllProducstWithDetailsAsync(bool trackChanges);
         void CreateProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
