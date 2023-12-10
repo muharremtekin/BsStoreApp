@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Entities.DataTransferObjects;
 using Entities.DataTransferObjects.Product;
 using Entities.Exceptions;
+using Entities.LinkModels;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Repositories.Contracts;
@@ -12,15 +14,22 @@ namespace Services.Concrete
     {
         private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
+        private readonly IProductLinks _productLinks;
+        private readonly ICategoryService _categoryService;
 
-        public ProductManager(IRepositoryManager manager, IMapper mapper)
+        public ProductManager(IRepositoryManager manager, IMapper mapper, IProductLinks productLinks, ICategoryService categoryService)
         {
             _manager = manager;
             _mapper = mapper;
+            _productLinks = productLinks;
+            _categoryService = categoryService;
         }
 
         public async Task<ProductDto> CreateProductAsync(ProductDtoForInsertion product)
         {
+            var category = await _categoryService.GetCategoryByIdAsync(product.CategoryId, false);
+
+
             var entity = _mapper.Map<Product>(product);
             _manager.Product.CreateProduct(entity);
             await _manager.SaveAsync();
@@ -41,11 +50,21 @@ namespace Services.Concrete
             return entity;
         }
 
-        public async Task<(IEnumerable<ProductDto> products, MetaData metaData)> GetAllProductsAsync(ProductParameters productParameters, bool trackChanges)
+        public async Task<(LinkResponse linkResponse, MetaData metaData)> GetAllProductsAsync(LinkParameters linkParameters, bool trackChanges)
         {
-            var productsWithMetaData = await _manager.Product.GetAllProductsAsync(productParameters, trackChanges);
+            //if (!linkParameters.ProductParameters.ValidPriceRage)
+            //    throw new PriceOutofRangeBadRequestException();
+
+            var productsWithMetaData = await _manager
+                .Product
+                .GetAllProductsAsync(linkParameters.ProductParameters, trackChanges);
+
             var productsDto = _mapper.Map<IEnumerable<ProductDto>>(productsWithMetaData);
-            return (productsDto, productsWithMetaData.MetaData);
+
+            var links = _productLinks
+                .TryGenerateLinks(productsDto, linkParameters.ProductParameters.Fields, linkParameters.HttpContext);
+
+            return (linkResponse: links, metaData: productsWithMetaData.MetaData);
         }
 
         public async Task<ProductDto> GetProductByIdAsync(int id, bool trackChanges)
@@ -74,5 +93,9 @@ namespace Services.Concrete
             _manager.Product.UpdateProduct(entity);
             await _manager.SaveAsync();
         }
+
+        public async Task<IEnumerable<Product>> GetAllProducstWithDetailsAsync(bool trackChanges) => await _manager
+                .Product
+                .GetAllProducstWithDetailsAsync(false);
     }
 }

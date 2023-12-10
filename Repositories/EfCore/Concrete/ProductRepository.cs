@@ -2,10 +2,11 @@
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.EfCore.Extensions;
 
 namespace Repositories.EfCore.Concrete
 {
-    public class ProductRepository : RepositoryBase<Product>, IProductRepository
+    public sealed class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
         public ProductRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
@@ -18,19 +19,28 @@ namespace Repositories.EfCore.Concrete
         public async Task<PagedList<Product>> GetAllProductsAsync(ProductParameters productParameters, bool trackChanges)
         {
             var products = await FindAll(trackChanges)
-                .OrderBy(p => p.Id)
+                .FilterProducts(productParameters.MinPrice, productParameters.MaxPrice)
+                .Search(productParameters.SerachTerm)
+                .Sort(productParameters.OrderBy)
                 .ToListAsync();
 
             return PagedList<Product>
-                .ToPagedList(products, productParameters.PageNumber, productParameters.PageSize);
+                .ToPagedList(products,
+                productParameters.PageNumber,
+                productParameters.PageSize);
         }
 
-        public async Task<Product> GetProductByIdAsync(int id, bool trackChanges)
+        public async Task<Product> GetProductByIdAsync(int id, bool trackChanges) =>
+            await FindByCondition(p => p.Id.Equals(id), trackChanges)
+            .SingleOrDefaultAsync();
+
+        public async Task<IEnumerable<Product>> GetAllProducstWithDetailsAsync(bool trackChanges)
         {
-            var product = await FindByCondition(p => p.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
-            return product;
+            return await _repositoryContext
+                .Products
+                .Include(p => p.Category)
+                .OrderBy(p => p.Id)
+                .ToListAsync();
         }
-
-
     }
 }

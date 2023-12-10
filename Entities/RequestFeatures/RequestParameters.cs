@@ -14,5 +14,8 @@
             set { _pageSize = value > maxPageSize ? maxPageSize : value; }
         }
 
+        public String? OrderBy { get; set; }
+
+        public String? Fields { get; set; }
     }
 }

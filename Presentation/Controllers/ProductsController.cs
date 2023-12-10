@@ -1,5 +1,7 @@
-﻿using Entities.DataTransferObjects.Product;
+﻿using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Product;
 using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
@@ -8,28 +10,42 @@ using System.Text.Json;
 
 namespace Presentation.Controllers
 {
+    //[ApiVersion("1.0")]
     [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/products")]
-    public class ProductController : ControllerBase
+    //[ResponseCache(CacheProfileName = "1mins")]
+    //[Route("api/{v:apiversion}/products")]
+    [ApiExplorerSettings(GroupName = "v1")]
+    public class ProductsController : ControllerBase
     {
         private readonly IServiceManager _manager;
 
-        public ProductController(IServiceManager manager)
-        {
-            _manager = manager;
-        }
+        public ProductsController(IServiceManager manager) => _manager = manager;
 
-        [HttpGet]
+        [Authorize]
+        [HttpHead]
+        [HttpGet(Name = "GetAllProductsAsync")]
+        //[ResponseCache(Duration = 60)]
+        [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetAllProductsAsync([FromQuery] ProductParameters productParameters)
         {
-            var pagedResult = await _manager
-                .ProductService
-                .GetAllProductsAsync(productParameters, false);
-            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
-            return Ok(pagedResult.products);
-        }
+            var d = @"\";
+            var linkParameters = new LinkParameters
+            {
+                ProductParameters = productParameters,
+                HttpContext = HttpContext
+            };
 
+            var result = await _manager
+                .ProductService
+                .GetAllProductsAsync(linkParameters, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(result.metaData));
+            return result.linkResponse.HasLinks ?
+                Ok(result.linkResponse.LinkedEntities) :
+                Ok(result.linkResponse.ShapedEntities);
+        }
+        [Authorize]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetProductAsync([FromRoute(Name = "id")] int id)
         {
@@ -39,14 +55,23 @@ namespace Presentation.Controllers
             return Ok(product);
         }
 
+        [Authorize]
+        [HttpGet("details")]
+        public async Task<IActionResult> GetAllBooksWithDetailsAsync()
+        {
+            return Ok(await _manager.ProductService.GetAllProducstWithDetailsAsync(false));
+        }
+
+        [Authorize(Roles = "Editor, Admin")]
         [ServiceFilter(typeof(ActionFilters.ValidationFilterAttribute))]
-        [HttpPost]
+        [HttpPost(Name = "CreateProductAsync")]
         public async Task<IActionResult> CreateProductAsync([FromBody] ProductDtoForInsertion productDto)
         {
             await _manager.ProductService.CreateProductAsync(productDto);
             return StatusCode(201, productDto);
         }
 
+        [Authorize(Roles = "Editor, Admin")]
         [ServiceFilter(typeof(ActionFilters.ValidationFilterAttribute))]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateProductAsync([FromRoute(Name = "id")] int id, [FromBody] ProductDtoForUpdate productDtoForUpdate)
@@ -55,6 +80,7 @@ namespace Presentation.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteProductAsync([FromRoute(Name = "id")] int id)
         {
@@ -62,6 +88,7 @@ namespace Presentation.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Editor, Admin")]
         [HttpPatch("{id:int}")]
         public async Task<IActionResult> PartiallyUpdateProductAsync([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<ProductDtoForUpdate> patchDoc)
         {
@@ -82,5 +109,12 @@ namespace Presentation.Controllers
             return NoContent();
         }
 
+        [Authorize]
+        [HttpOptions]
+        public IActionResult GetProductActions()
+        {
+            Response.Headers.Add("Allow", "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS");
+            return Ok();
+        }
     }
 }

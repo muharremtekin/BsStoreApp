@@ -14,17 +14,13 @@ namespace Repositories.EfCore.Concrete
 
         public void DeleteImage(Image image) => Delete(image);
 
-        public async Task<List<Image>> GetAllImagesByEntityIdAsync(int entityId, bool trackChanges)
-        {
-            var images = await FindByCondition(i => i.EntityId.Equals(entityId), trackChanges).ToListAsync();
-            return images;
-        }
+        public async Task<List<Image>> GetAllImagesByEntityIdAsync(int entityId, bool trackChanges) =>
+            await FindByCondition(i => i.EntityId.Equals(entityId), trackChanges)
+            .ToListAsync();
 
-        public async Task<Image> GetImageByIdAsync(int id, bool trackChanges)
-        {
-            var image = await FindByCondition(i => i.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
-            return image;
-        }
+        public async Task<Image> GetImageByIdAsync(int id, bool trackChanges) =>
+             await FindByCondition(i => i.Id.Equals(id), trackChanges)
+            .SingleOrDefaultAsync();
 
         public void UpdateImage(Image image) => Update(image);
     }

@@ -8,7 +8,7 @@
         IExcelService ExcelService { get; }
         IPdfService PdfService { get; }
         IMailService MailService { get; }
-
-
+        ICategoryService CategoryService { get; }
+        IAuthenticationService AuthenticationService { get; }
     }
 }
