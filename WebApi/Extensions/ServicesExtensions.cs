@@ -141,7 +141,7 @@ namespace WebApi.Extensions
         {
             var rateLimitRules = new List<RateLimitRule>()
             {
-                new RateLimitRule(){Endpoint="*", Limit=120, Period="1m"}
+                new RateLimitRule(){Endpoint="*", Limit=999999, Period="1m"}
             };
 
             services.Configure<IpRateLimitOptions>(opt =>
@@ -226,6 +226,25 @@ namespace WebApi.Extensions
                     }
                 });
             });
+        }
+
+        public static void RegisterRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IFaultRepository, FaultRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+        }
+        public static void RegisterServices(this IServiceCollection services)
+        {
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IFaultService, FaultManager>();
+            services.AddScoped<IImageService, ImageManager>();
+            services.AddScoped<IExcelService, ExcelManager>();
+            services.AddScoped<IPdfService, PdfManager>();
+            services.AddScoped<IMailService, MailManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<IAuthenticationService, AuthenticationManager>();
         }
     }
 }

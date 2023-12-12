@@ -5,23 +5,28 @@ namespace Repositories.EfCore.Concrete
     public class RepositoryManager : IRepositoryManager
     {
         private readonly RepositoryContext _repositoryContext;
-        private readonly Lazy<IProductRepository> _productRepository;
-        private readonly Lazy<IFaultRepository> _faultRepository;
-        private readonly Lazy<IImageRepository> _imageRepository;
-        private readonly Lazy<ICategoryRepository> _categoryRepository;
-        public RepositoryManager(RepositoryContext repositoryContext)
+        private readonly IProductRepository _productRepository;
+        private readonly IFaultRepository _faultRepository;
+        private readonly IImageRepository _imageRepository;
+        private readonly ICategoryRepository _categoryRepository;
+
+        public RepositoryManager(RepositoryContext repositoryContext,
+            IProductRepository productRepository,
+            IFaultRepository faultRepository,
+            IImageRepository imageRepository,
+            ICategoryRepository categoryRepository)
         {
             _repositoryContext = repositoryContext;
-            _productRepository = new Lazy<IProductRepository>(() => new ProductRepository(_repositoryContext));
-            _faultRepository = new Lazy<IFaultRepository>(() => new FaultRepository(_repositoryContext));
-            _imageRepository = new Lazy<IImageRepository>(() => new ImageRepository(_repositoryContext));
-            _categoryRepository = new Lazy<ICategoryRepository>(() => new CategoryRepository(_repositoryContext));
+            _productRepository = productRepository;
+            _faultRepository = faultRepository;
+            _imageRepository = imageRepository;
+            _categoryRepository = categoryRepository;
         }
 
-        public IProductRepository Product => _productRepository.Value;
-        public IFaultRepository Fault => _faultRepository.Value;
-        public IImageRepository Image => _imageRepository.Value;
-        public ICategoryRepository Category => _categoryRepository.Value;
+        public IProductRepository Product => _productRepository;
+        public IFaultRepository Fault => _faultRepository;
+        public IImageRepository Image => _imageRepository;
+        public ICategoryRepository Category => _categoryRepository;
         public async Task SaveAsync() => await _repositoryContext.SaveChangesAsync();
     }
 }

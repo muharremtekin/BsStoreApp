@@ -1033,3 +1033,51 @@
 2023-12-08 17:52:48.9277 Info Message Template Auto Format enabled
 2023-12-08 17:52:49.0541 Info Registered target NLog.Targets.FileTarget(Name=logfile)
 2023-12-08 17:52:49.0821 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-11 14:55:44.1619 Info Message Template Auto Format enabled
+2023-12-11 14:55:44.3170 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-11 14:55:44.3434 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-11 15:09:02.2386 Info Message Template Auto Format enabled
+2023-12-11 15:09:02.3189 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-11 15:09:02.3522 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-11 15:10:21.1906 Info Message Template Auto Format enabled
+2023-12-11 15:10:21.2881 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-11 15:10:21.3164 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 15:13:32.7988 Info Message Template Auto Format enabled
+2023-12-12 15:13:32.9612 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 15:13:32.9845 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 15:17:44.0319 Info Message Template Auto Format enabled
+2023-12-12 15:17:44.1300 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 15:17:44.1598 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 15:19:58.7640 Info AppDomain Shutting down. LogFactory closing...
+2023-12-12 15:19:58.7803 Info LogFactory has been closed.
+2023-12-12 15:31:26.2622 Info Message Template Auto Format enabled
+2023-12-12 15:31:26.3403 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 15:31:26.3694 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 15:51:23.4044 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 15:51:23.4297 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.7.2287. Product version: 5.2.7+a1ef7cd83b5a6a172142a6850f0ced4e759a4b3b. GlobalAssemblyCache: False
+2023-12-12 15:51:23.4377 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 15:51:23.4377 Info Configuration initialized.
+2023-12-12 16:01:50.2474 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 16:01:50.2688 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.7.2287. Product version: 5.2.7+a1ef7cd83b5a6a172142a6850f0ced4e759a4b3b. GlobalAssemblyCache: False
+2023-12-12 16:01:50.2688 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 16:01:50.2839 Info Configuration initialized.
+2023-12-12 16:23:32.1456 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 16:23:32.2767 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.7.2287. Product version: 5.2.7+a1ef7cd83b5a6a172142a6850f0ced4e759a4b3b. GlobalAssemblyCache: False
+2023-12-12 16:23:32.2873 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 16:23:32.3000 Info Configuration initialized.
+2023-12-12 16:28:53.2026 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 16:28:53.2260 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.7.2287. Product version: 5.2.7+a1ef7cd83b5a6a172142a6850f0ced4e759a4b3b. GlobalAssemblyCache: False
+2023-12-12 16:28:53.2351 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 16:28:53.2351 Info Configuration initialized.
+2023-12-12 16:29:52.0619 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 16:29:52.0619 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.7.2287. Product version: 5.2.7+a1ef7cd83b5a6a172142a6850f0ced4e759a4b3b. GlobalAssemblyCache: False
+2023-12-12 16:29:52.0875 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 16:29:52.1005 Info Configuration initialized.
+2023-12-12 16:30:13.8788 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 16:30:13.8921 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.7.2287. Product version: 5.2.7+a1ef7cd83b5a6a172142a6850f0ced4e759a4b3b. GlobalAssemblyCache: False
+2023-12-12 16:30:13.8921 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 16:30:13.9073 Info Configuration initialized.
+2023-12-12 16:31:25.5794 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2023-12-12 16:31:25.6033 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.7.2287. Product version: 5.2.7+a1ef7cd83b5a6a172142a6850f0ced4e759a4b3b. GlobalAssemblyCache: False
+2023-12-12 16:31:25.6128 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\Muharrem\Desktop\btk\web_api_course\bsStoreApp\WebApi\nlog.config
+2023-12-12 16:31:25.6260 Info Configuration initialized.

@@ -17,8 +17,8 @@ builder.Services.AddControllers(config =>
     config.ReturnHttpNotAcceptable = true;
     config.CacheProfiles.Add("1mins", new CacheProfile() { Duration = 60 });
 })
-    //.AddCustomCSVFormatter()
-    //.AddXmlDataContractSerializerFormatters()
+    .AddCustomCSVFormatter()
+    .AddXmlDataContractSerializerFormatters()
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
     .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize);
 
@@ -60,6 +60,9 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
+
+builder.Services.RegisterRepositories();
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
