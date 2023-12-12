@@ -1,61 +1,51 @@
-﻿using AutoMapper;
-using Entities.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Repositories.Contracts;
-using Services.Contracts;
+﻿using Services.Contracts;
 
 namespace Services.Concrete
 {
     public class ServiceManager : IServiceManager
     {
-        private readonly Lazy<IProductService> _productService;
-        private readonly Lazy<IFaultService> _faultService;
-        private readonly Lazy<IImageService> _imageService;
-        private readonly Lazy<IExcelService> _excelService;
-        private readonly Lazy<IPdfService> _pdfService;
-        private readonly Lazy<IMailService> _mailService;
-        private readonly Lazy<IAuthenticationService> _authenticationService;
-        private readonly Lazy<ICategoryService> _categoryService;
+        private readonly IProductService _productService;
+        private readonly IFaultService _faultService;
+        private readonly IImageService _imageService;
+        private readonly IExcelService _excelService;
+        private readonly IPdfService _pdfService;
+        private readonly IMailService _mailService;
+        private readonly IAuthenticationService _authenticationService;
+        private readonly ICategoryService _categoryService;
 
-
-        public ServiceManager
-            (IRepositoryManager repositoryManager,
-            ILoggerService loggerService,
-            IMapper mapper,
+        public ServiceManager(IProductService productService,
+            IFaultService faultService,
+            IImageService imageService,
             IExcelService excelService,
             IPdfService pdfService,
             IMailService mailService,
-            IProductLinks productLinks,
-            IConfiguration configration,
-            //ICategoryService categoryService,
-            UserManager<User> userManager)
+            IAuthenticationService authenticationService,
+            ICategoryService categoryService)
         {
-            _categoryService = new Lazy<ICategoryService>(() => new CategoryManager(repositoryManager));
-            _productService = new Lazy<IProductService>(() => new ProductManager(repositoryManager, mapper, productLinks, _categoryService.Value));
-            _faultService = new Lazy<IFaultService>(() => new FaultManager(repositoryManager, mapper, mailService: mailService, excelService: excelService, pdfService: pdfService));
-            _imageService = new Lazy<IImageService>(() => new ImageManager(repositoryManager, mapper));
-            _excelService = new Lazy<IExcelService>(() => new ExcelManager());
-            _pdfService = new Lazy<IPdfService>(() => new PdfManager());
-            _mailService = new Lazy<IMailService>(() => new MailManager());
-
-            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationManager(loggerService, mapper, userManager, configration));
+            _productService = productService;
+            _faultService = faultService;
+            _imageService = imageService;
+            _excelService = excelService;
+            _pdfService = pdfService;
+            _mailService = mailService;
+            _authenticationService = authenticationService;
+            _categoryService = categoryService;
         }
 
-        public IProductService ProductService => _productService.Value;
+        public IProductService ProductService => _productService;
 
-        public IFaultService FaultService => _faultService.Value;
+        public IFaultService FaultService => _faultService;
 
-        public IImageService ImageService => _imageService.Value;
+        public IImageService ImageService => _imageService;
 
-        public IExcelService ExcelService => _excelService.Value;
+        public IExcelService ExcelService => _excelService;
 
-        public IPdfService PdfService => _pdfService.Value;
+        public IPdfService PdfService => _pdfService;
 
-        public IMailService MailService => _mailService.Value;
+        public IMailService MailService => _mailService;
 
-        public IAuthenticationService AuthenticationService => _authenticationService.Value;
+        public IAuthenticationService AuthenticationService => _authenticationService;
 
-        public ICategoryService CategoryService => _categoryService.Value;
+        public ICategoryService CategoryService => _categoryService;
     }
 }
