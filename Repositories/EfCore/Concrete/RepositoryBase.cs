@@ -12,7 +12,7 @@ namespace Repositories.EfCore.Concrete
             _repositoryContext = repositoryContext;
         }
 
-        public void Create(T entity) => _repositoryContext.Set<T>().Add(entity);
+        public void Create(T entity) => _repositoryContext.Set<T>().AddAsync(entity);
 
         public void Delete(T entity) => _repositoryContext.Set<T>().Remove(entity);
 

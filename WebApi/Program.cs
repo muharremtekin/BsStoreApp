@@ -65,8 +65,10 @@ builder.Services.RegisterRepositories();
 builder.Services.RegisterServices();
 
 var app = builder.Build();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var logger = app.Services.GetRequiredService<ILoggerService>();
+
 app.ConfigureExceptionHandler(logger);
 
 // Configure the HTTP request pipeline.
@@ -93,6 +95,7 @@ app.UseResponseCaching();
 app.UseHttpCacheHeaders();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

@@ -27,28 +27,13 @@ namespace WebApi.Extensions
         {
             services.AddDbContext<RepositoryContext>(
                 options => options
-                .UseSqlServer(configuration
+                .UseNpgsql(configuration
                 .GetConnectionString("sqlConnection"))
             );
         }
-        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
-            services.AddScoped<IRepositoryManager, RepositoryManager>();
-
-        public static void ConfigureServiceManager(this IServiceCollection services) =>
-            services.AddScoped<IServiceManager, ServiceManager>();
 
         public static void ConfigureLoggerService(this IServiceCollection services) =>
             services.AddSingleton<ILoggerService, LoggerManager>();
-        public static void ConfigureEmailService(this IServiceCollection services) =>
-            services.AddScoped<IMailService, MailManager>();
-        public static void ConfigurePdfService(this IServiceCollection services) =>
-            services.AddScoped<IPdfService, PdfManager>();
-        public static void ConfigureExcelService(this IServiceCollection services)
-        {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            services.AddScoped<IExcelService, ExcelManager>();
-        }
-
         public static void ConfigureActionFilters(this IServiceCollection services)
         {
             services.AddScoped<ValidationFilterAttribute>();
@@ -69,7 +54,6 @@ namespace WebApi.Extensions
 
         public static void ConfigureDataShaper(this IServiceCollection services) =>
             services.AddScoped<IDataShaper<ProductDto>, DataShaper<ProductDto>>();
-
         public static void AddCustomMediaTypes(this IServiceCollection services)
         {
             services.Configure<MvcOptions>(config =>
@@ -103,7 +87,6 @@ namespace WebApi.Extensions
                 }
             });
         }
-
         public static void ConfigureVersioning(this IServiceCollection services)
         {
             services.AddApiVersioning(opt =>
@@ -234,17 +217,21 @@ namespace WebApi.Extensions
             services.AddScoped<IFaultRepository, FaultRepository>();
             services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
         }
         public static void RegisterServices(this IServiceCollection services)
         {
+
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IFaultService, FaultManager>();
             services.AddScoped<IImageService, ImageManager>();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             services.AddScoped<IExcelService, ExcelManager>();
             services.AddScoped<IPdfService, PdfManager>();
             services.AddScoped<IMailService, MailManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IAuthenticationService, AuthenticationManager>();
+            services.AddScoped<IServiceManager, ServiceManager>();
         }
     }
 }
